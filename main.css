@@ -1,0 +1,207 @@
+* {
+    box-sizing: border-box;
+    }
+    
+body {
+    margin: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+}
+
+.app {
+    display: flex;
+    flex-direction: row;
+}
+        
+.panel {
+    background: rgb(247, 243, 243);
+    min-height: 100vh;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo__text {
+    font-size: 25px;
+
+}
+
+.logo {
+    margin-bottom: 10px;
+}
+
+.days__nav {
+    display: flex;
+    flex-direction: column;gap: 25px;
+    align-items: center;
+}
+
+.days__list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.lesson__button {
+    background-color: rgb(223, 219, 219);
+    box-shadow: 0px 8px 14px rgba(133, 154, 209, 0.15);
+    border-radius: 14px;
+    border: none;
+    height: 35px;
+    width: 115px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.lesson__button:hover {
+    background-color: #5851dd;
+    color: white;
+}
+
+.lesson_button_active {
+    background-color: #5851dd;
+    color: white;
+}
+
+.days__add {
+    border: 2px solid rgb(223, 219, 219);
+    border-radius: 14px;
+    height: 35px;
+    width: 55px;
+    background: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.days__add:hover {
+    background: #5851dd;
+}
+
+.days__add:hover img {
+    filter: brightness(0) invert(1);
+}
+
+.content {
+    min-width: 900px;
+    padding: 45px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 30px;
+    line-height: 33px;
+    color: #000;
+}
+
+.progress {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 235px;
+}
+
+.progress__text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress__name {
+    font-size: 14px;
+    line-height: 16px;
+    color: #000;
+}
+
+.progress__percent {
+    font-size: 12px;
+    line-height: 13px;
+    color: #000;
+}
+
+.progress__bar {
+    width: 100%;
+    background: #e6e9ed;
+    border-radius: 4px;
+    height: 5px;
+    position: relative;
+}
+
+.progress__cover-bar {
+    position: absolute;
+    transition: all 1s;
+    height: 5px;
+    border-radius: 4px;
+    background: #5851dd;
+}
+
+main {
+    margin-top: 30px;
+}
+
+.notes, 
+.arrival_airport,
+.departure_airport,
+.flight_price,
+.time_start,
+.airplane_type,
+.date {
+    background: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.date_,
+.airplane_type_,
+.time_start_,
+.flight_price_,
+.departure_airport_,
+.arrival_airport_,
+.notes_ {
+    background: rgb(247, 243, 243);
+    border-radius: 10px 0 0 10px;
+    font-size: 20px;
+    line-height: 13px;
+    padding: 20px 40px;
+    width: 220px;
+}
+
+input {
+    background: #ffffff;
+    border: 5px solid rgb(247, 243, 243);
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+    padding: 12px 20px;
+    flex: 1;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 8px;
+    width: 600px;
+}
+
+button {
+    background-color: rgb(223, 219, 219);
+    box-shadow: 0px 8px 14px rgba(133, 154, 209, 0.15);
+    border-radius: 14px;
+    border: none;
+    height: 35px;
+    width: 115px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background: #5851dd;
+    color: white;
+}

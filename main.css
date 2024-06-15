@@ -205,3 +205,9 @@ button:hover {
     background: #5851dd;
     color: white;
 }
+
+@media (max-width: 428px) {
+  body {
+    font-size: 14px;
+  }
+}

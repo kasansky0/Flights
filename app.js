@@ -61,28 +61,27 @@ function saveData() {
 
 /* render */
 
-function rerenderContent(activeFlight) {
-    page.content.day.innerHTML = '';
-    for(const ch in activeFlight.data) {
-            const element = document.createElement('div');
-            element.classList.add('date');
-            const inputText = activeFlight.data[ch];
-            const data = ch;
-            if(data === 'Date') {
-                element.innerHTML = `
-            <div class="date_">${data}</div>
-            <form class="date__input">
-               <input name="comment" type="date" value="${inputText}" onchange="updateData('${data}', this.value)">
-            </form>`;
-            } else {
-                element.innerHTML = `
-            <div class="date_">${data}</div>
-            <form class="date__input">
-               <input name="comment" type="text" value="${inputText}" onchange="updateData('${data}', this.value)">
-            </form>`;
+function rerenderFlights(activeFlight) {
+    page.days__list.innerHTML = '';
+    for(const flight of flights) {
+        const existed = document.querySelector(`[lesson-button-flight-id="${flight.id}"]`);
+        if(!existed) {
+            const element = document.createElement('button');
+            element.setAttribute('lesson-button-flight-id', flight.id);
+            element.classList.add('lesson__button');
+            element.innerText = `${flight.name}`;
+            element.addEventListener('click', () => rerender(flight.id));
+            if(activeFlight.id === flight.id) {
+                element.classList.add('lesson-button-flight-id');
             }
-
-            page.content.day.appendChild(element);
+            page.days__list.appendChild(element);
+            continue;
+        }
+        if(activeFlight.id === flight.id) {
+            existed.classList.add('lesson_button_active');
+        } else {
+            existed.classList.remove('lesson_button_active');
+        }
     }
 }
 
@@ -106,12 +105,12 @@ function rerenderContent(activeFlight) {
             <form class="date__input">
                <input name="comment" type="date" value="${inputText}" onchange="updateData('${data}', this.value)">
             </form>`;
-            } else { 
-                    element.innerHTML = `
-                    <div class="date_">${data}</div>
-                    <form class="date__input">
-                        <input name="comment" type="text" value="${inputText}" onchange="updateData('${data}', this.value)">
-                    </form>`;
+            } else {
+                element.innerHTML = `
+            <div class="date_">${data}</div>
+            <form class="date__input">
+               <input name="comment" type="text" value="${inputText}" onchange="updateData('${data}', this.value)">
+            </form>`;
             }
 
             page.content.day.appendChild(element);

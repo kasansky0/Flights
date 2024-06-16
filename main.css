@@ -181,7 +181,7 @@ input {
     border: 5px solid rgb(247, 243, 243);
     border-top-right-radius: 9px;
     border-bottom-right-radius: 9px;
-    padding: 5px;
+    padding: 12px;
     flex: 1;
     font-weight: 400;
     font-size: 16px;

@@ -99,11 +99,19 @@ function rerenderContent(activeFlight) {
             element.classList.add('date');
             const inputText = activeFlight.data[ch];
             const data = ch;
-            element.innerHTML = `
+            if(data === 'Date') {
+                element.innerHTML = `
             <div class="date_">${data}</div>
             <form class="date__input">
-                <input name="comment" type="text" value="${inputText}" onchange="updateData('${data}', this.value)">
+               <input name="comment" type="date" value="${inputText}" onchange="updateData('${data}', this.value)">
             </form>`;
+            } else { 
+                    element.innerHTML = `
+                    <div class="date_">${data}</div>
+                    <form class="date__input">
+                        <input name="comment" type="text" value="${inputText}" onchange="updateData('${data}', this.value)">
+                    </form>`;
+            }
 
             page.content.day.appendChild(element);
     }

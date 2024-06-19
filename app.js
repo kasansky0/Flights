@@ -7,8 +7,8 @@ let flights = [
             "data": {
                 "Date": "8 June, 2024",
                 "Airplane type": "Boeing",
-                "Hours": "19:00",
-                "Price": "165",
+                "Time start": "19:00",
+                "Flight price": "165 euros",
                 "Departure airport": "Paris",
                 "Arrival airport": "Bordeaux",
                 "Notes": "It was a good flight",
@@ -21,8 +21,8 @@ let flights = [
             "data": {
                 "Date": "",
                 "Airplane type": "",
-                "Hours": "",
-                "Price": "11",
+                "Time start": "",
+                "Flight price": "",
                 "Departure airport": "",
                 "Arrival airport": "",
                 "Notes": "",
@@ -31,7 +31,6 @@ let flights = [
         }
 ];
 const FLIGHT_KEY = 'FLIGHT_KEY';
-const ACTIVE_FLIGHT_ID_KEY = 'ACTIVE_FLIGHT_ID_KEY';
 let globalActiveFlightId;
 
 const page = {
@@ -43,8 +42,7 @@ const page = {
     },
     content: {
         day: document.querySelector('.day')
-    },
-    windows: document.querySelector('.windows')
+    }
 }
 
 /* utils */
@@ -55,42 +53,41 @@ function loadData() {
     if(Array.isArray(flightArray)) {
         flights = flightArray;
     }
-    const activeFlightId = localStorage.getItem(ACTIVE_FLIGHT_ID_KEY);
-    if (activeFlightId) {
-        globalActiveFlightId = parseInt(activeFlightId, 10);
-    }
 }
 
 function saveData() {
     localStorage.setItem(FLIGHT_KEY, JSON.stringify(flights));
 }
 
-function saveActiveFlightId() {
-    localStorage.setItem(ACTIVE_FLIGHT_ID_KEY, globalActiveFlightId);
-}
-
 /* render */
 
 function rerenderFlights(activeFlight) {
     page.days__list.innerHTML = '';
-    for (const flight of flights) {
-        const element = document.createElement('button');
-        element.setAttribute('lesson-button-flight-id', flight.id);
-        element.classList.add('lesson__button');
-        element.innerText = `${flight.name}`;
-        element.addEventListener('click', () => rerender(flight.id));
-        
-        if (activeFlight.id === flight.id) {
-            element.classList.add('lesson_button_active');
+    for(const flight of flights) {
+        const existed = document.querySelector(`[lesson-button-flight-id="${flight.id}"]`);
+        if(!existed) {
+            const element = document.createElement('button');
+            element.setAttribute('lesson-button-flight-id', flight.id);
+            element.classList.add('lesson__button');
+            element.innerText = `${flight.name}`;
+            element.addEventListener('click', () => rerender(flight.id));
+            if(activeFlight.id === flight.id) {
+                element.classList.add('lesson-button-flight-id');
+            }
+            page.days__list.appendChild(element);
+            continue;
         }
-
-        page.days__list.appendChild(element);
+        if(activeFlight.id === flight.id) {
+            existed.classList.add('lesson_button_active');
+        } else {
+            existed.classList.remove('lesson_button_active');
+        }
     }
 }
 
 function rerenderHead(activeFlight) {
     page.header.h1.innerText = activeFlight.name;
-    const progress = totalHours(flights) / activeFlight.target > 1 ? 100 : totalHours(flights) / activeFlight.target * 100;
+    const progress = flights.length / activeFlight.target > 1 ? 100 : flights.length / activeFlight.target * 100;
     page.header.progressPercent.innerText = progress.toFixed(0) + '%';
     page.header.progressCoverBar.setAttribute('style', `width: ${progress}%`);
 }
@@ -135,8 +132,8 @@ function addNewFlight() {
         "data": {
             "Date": "",
             "Airplane type": "",
-            "Hours": "",
-            "Price": "",
+            "Time start": "",
+            "Flight price": "",
             "Departure airport": "",
             "Arrival airport": "",
             "Notes": "",
@@ -162,62 +159,6 @@ function deleteFlight() {
     }
 }
 
-function totalFlightHours() {
-    const element = document.createElement('div');
-    element.classList.add('money_spent');
-    const total = flights.reduce((acc, current) => {
-        if (current.data && current.data.Price) {
-            const price = parseInt(current.data.Price);
-            console.log(price);
-            return acc + price;
-        }
-        return 0;
-    }, 0);
-    element.innerText = `Total: ${total} Euros`;
-    page.windows.appendChild(element);
-}
-
-function totalFlightPrice() {
-    const element = document.createElement('div');
-    element.classList.add('money_spent');
-    const total = flights.reduce((acc, current) => {
-        if (current.data && current.data.Price) {
-            const price = parseInt(current.data.Price);
-            return acc + price;
-        }
-        return acc;
-    }, 0);
-    element.innerText = `Total: ${total} Euros`;
-    page.windows.appendChild(element);
-}
-
-function totalHours(flights) {
-    return flights.reduce((acc, current) => {
-        if(current.data && current.data.Hours) {
-            return acc + parseInt(current.data.Hours, 10);
-        } else {
-            return acc;
-        }
-        }, 0)
-};
-
-function totalFlightHours() {
-    if(!Array.isArray(flights)) {
-        console.log('Flight is not defined');
-        return;
-    }
-    const total = totalHours(flights);
-    const element = document.createElement('div');
-    element.classList.add('flight_hours_');
-    element.innerText = `Total: ${total} Hours`;
-    page.windows.appendChild(element);
-    if (page && page.windows && page.windows.appendChild) {
-        page.windows.appendChild(element);
-    } else {
-        console.error('page.windows is not defined or is not an element');
-    }
-}
-
 function clearUI() {
     page.days__list.innerHTML = '';
     page.header.h1.innerText = 'No flights available';
@@ -228,7 +169,6 @@ function clearUI() {
 
 function rerender(activeFlightId) {
     globalActiveFlightId = activeFlightId;
-    saveActiveFlightId();
     const activeFlight = flights.find(flight => flight.id === activeFlightId);
     if(!activeFlight) {
         return;
@@ -245,16 +185,6 @@ function rerender(activeFlightId) {
 
 (() => {
     loadData();
-    if (flights.length > 0) {
-        if (globalActiveFlightId) {
-            rerender(globalActiveFlightId);
-        } else {
-            rerender(flights[0].id);
-        }
-    } else {
-        clearUI();
-    }    
     saveData();
-    totalFlightHours();
-    totalFlightPrice();
+    rerender(flights[0].id);
 })()

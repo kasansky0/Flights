@@ -7,7 +7,7 @@ let flights = [
             "data": {
                 "Date": "8 June, 2024",
                 "Airplane type": "Boeing",
-                "Hours": "19:00",
+                "Hours": "2",
                 "Price": "165",
                 "Departure airport": "Paris",
                 "Arrival airport": "Bordeaux",
@@ -131,7 +131,7 @@ function updateData(key, value) {
 function addNewFlight() {
     const newFlight = {
         "id": flights.length + 1,
-        "name": `Flight # ${flights.length + 1}`,
+        "name": `Flight ${flights.length + 1}`,
         "data": {
             "Date": "",
             "Airplane type": "",

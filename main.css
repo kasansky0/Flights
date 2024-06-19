@@ -93,9 +93,8 @@ body {
 }
 
 .content {
-    min-width: 750px;
-    padding: 10px 45px;
-    position: fixed;
+    min-width: 670px;
+    position: relative;
 }
 
 header {
@@ -108,6 +107,8 @@ h1 {
     font-size: 30px;
     line-height: 33px;
     color: #000;
+    margin-right: 50px;
+    margin-left: 50px;
 }
 
 .progress {
@@ -213,25 +214,17 @@ button:hover {
     color: white;
 }
 
-.right_panel {
-    padding: 10px;
-}
-
 .windows {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 244px;
-    position: fixed;
-    margin-left: 750px;
     gap: 10px;
 }
 
 .flight_hours_,
-.money_spent,
-.airplanes_flown,
-.home_airport {
+.money_spent {
     width: 200px;
     height: 100px;
     background-color: rgb(240, 237, 237);

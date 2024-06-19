@@ -54,7 +54,7 @@ body {
     width: 115px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.7s ease;
 }
 
 .lesson__button:hover {
@@ -65,6 +65,8 @@ body {
 .lesson_button_active {
     background-color: #5851dd;
     color: white;
+    height: 45px;
+    width: 125px;
 }
 
 .days__add {
@@ -86,9 +88,14 @@ body {
     filter: brightness(0) invert(1);
 }
 
+.main_content {
+    padding: 10px;
+}
+
 .content {
-    min-width: 900px;
-    padding: 45px;
+    min-width: 750px;
+    padding: 10px 45px;
+    position: fixed;
 }
 
 header {
@@ -181,12 +188,12 @@ input {
     border: 5px solid rgb(247, 243, 243);
     border-top-right-radius: 9px;
     border-bottom-right-radius: 9px;
-    padding: 12px;
+    padding: 12px 20px;
     flex: 1;
     font-weight: 400;
     font-size: 16px;
     line-height: 8px;
-    width: 600px;
+    width: 450px;
 }
 
 button {
@@ -206,8 +213,32 @@ button:hover {
     color: white;
 }
 
-@media (max-width: 428px) {
-  body {
-    font-size: 14px;
-  }
+.right_panel {
+    padding: 10px;
+}
+
+.windows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 244px;
+    position: fixed;
+    margin-left: 750px;
+    gap: 10px;
+}
+
+.flight_hours_,
+.money_spent,
+.airplanes_flown,
+.home_airport {
+    width: 200px;
+    height: 100px;
+    background-color: rgb(240, 237, 237);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
 }

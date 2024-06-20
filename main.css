@@ -33,7 +33,8 @@ body {
 
 .days__nav {
     display: flex;
-    flex-direction: column;gap: 25px;
+    flex-direction: column;
+    gap: 25px;
     align-items: center;
 }
 
@@ -58,7 +59,7 @@ body {
 }
 
 .lesson__button:hover {
-    background-color: #e71d2e;
+    background-color: #5851dd;
     color: white;
 }
 
@@ -234,4 +235,91 @@ button:hover {
     align-items: center;
     justify-content: center;
     font-size: 25px;
+}
+
+@media(max-width: 490px) {
+    h1 {
+        font-size: 25px;
+        margin-left: 25px;
+        margin-right: 5px;
+    }
+
+    .app {
+        flex-direction: column;
+    }
+
+    .panel {
+        flex-direction: row;
+        min-height: auto;
+        gap: 5px;
+    }
+
+    .logo__text {
+        display: none;
+    }
+
+    .days__add {
+        margin-left: 20px;
+    }
+
+    .days__nav {
+        gap: 5px;
+        overflow: scroll;
+        height: 100px;
+    }
+
+    .days__list {
+        gap: 5px;
+    }
+
+    .lesson__button {
+        height: 15px;
+        width: 115px;
+        cursor: pointer;
+        font-size: 11px;
+    }
+
+    .days__add {
+        height: 27px;
+        width: 55px;
+        margin: 0;
+    }
+
+    #delete_button {
+        margin-left: 20px;
+    }
+
+    header {
+        width: 360px;
+    }
+
+    input {
+        font-size: 14px;
+        line-height: 8px;
+        width: 246px;
+    }
+
+    .date_ {
+        width: 110px;
+        font-size: 14px;
+        padding-left: 5px;
+        padding-right: 1px;
+    }
+
+
+
+
+    .windows {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100vw;
+        font-size: 1px;
+    }
+
+    .flight_hours_,
+    .money_spent {
+        width: 200px;
+        height: 50px;
+        font-size: 15px;
+}
 }
